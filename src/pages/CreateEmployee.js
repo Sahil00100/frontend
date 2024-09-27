@@ -26,6 +26,89 @@ export default function CreateEmployeeModal(props) {
 
 
 
+  // return (
+  //   <div>
+  //     <Modal
+  //       open={open}
+  //       onClose={handleClose}
+  //       aria-labelledby="modal-modal-title"
+  //       aria-describedby="modal-modal-description"
+  //     >
+  //       <Box sx={style}>
+  //         <h3 className="dashboard-heading">Create New Employee</h3>
+  //         <Box
+  //           style={{
+  //             display: "flex",
+  //             flexDirection: "column",
+  //             alignItems: "center",
+  //             gap: "10px",
+  //             height: "400px",
+  //             overflowY: "scroll",
+  //             overflowX: "hidden",
+  //           }}
+  //         >
+  //           {/* default fields here */}
+  //           <InputBox
+  //             required
+  //             label="Full Name"
+  //             name="name"
+  //             type="text"
+  //             onChange={onChange}
+  //             value={state.name}
+  //           />
+
+  //           <InputBox
+  //             required
+  //             label="Phone Number"
+  //             name="phone_number"
+  //             type="number"
+  //             onChange={onChange}
+  //             value={state.phone_number}
+  //           />
+  //           <InputBox
+  //             required
+  //             label="Email"
+  //             name="email"
+  //             type="text"
+  //             onChange={onChange}
+  //             value={state.email}
+  //           />
+
+  //           {/* custom fields here */}
+
+  //           {fieldList.map((item) => (
+  //             <InputBox
+  //               key={item.name}
+  //               required
+  //               label={item.label}
+  //               name={item.name}
+  //               type={item.data_type==="int"?"number":item.type}
+  //               onChange={onChangeCustomField}
+  //               value={item.value}
+  //               id={item.id}
+  //               data_type={item.data_type}
+  //             />
+  //           ))}
+  //         </Box>
+
+  //         <Box
+  //           style={{
+  //             display: "flex",
+  //             justifyContent: "center",
+  //             paddingTop: "15px",
+  //           }}
+  //         >
+  //           <BasicButton
+  //             variant={"outlined"}
+  //             onClick={onSubmit}
+  //             name={"Submit"}
+  //           />
+  //         </Box>
+  //       </Box>
+  //     </Modal>
+  //   </div>
+  // );
+
   return (
     <div>
       <Modal
@@ -34,20 +117,11 @@ export default function CreateEmployeeModal(props) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <h3 className="dashboard-heading">Create New Employee</h3>
-          <Box
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "10px",
-              height: "400px",
-              overflowY: "scroll",
-              overflowX: "hidden",
-            }}
-          >
-            {/* default fields here */}
+        <Box sx={style} className="modal-box">
+          <h3 className="modal-title">Create New Employee</h3>
+          
+          <Box className="modal-content">
+            {/* Default fields */}
             <InputBox
               required
               label="Full Name"
@@ -56,33 +130,33 @@ export default function CreateEmployeeModal(props) {
               onChange={onChange}
               value={state.name}
             />
-
+  
             <InputBox
               required
               label="Phone Number"
               name="phone_number"
-              type="number"
+              type="text"
               onChange={onChange}
               value={state.phone_number}
             />
+  
             <InputBox
               required
               label="Email"
               name="email"
-              type="text"
+              type="email"
               onChange={onChange}
               value={state.email}
             />
-
-            {/* custom fields here */}
-
+  
+            {/* Custom fields */}
             {fieldList.map((item) => (
               <InputBox
                 key={item.name}
                 required
                 label={item.label}
                 name={item.name}
-                type={item.type}
+                type={item.data_type === "int" ? "number" : item.type}
                 onChange={onChangeCustomField}
                 value={item.value}
                 id={item.id}
@@ -90,16 +164,10 @@ export default function CreateEmployeeModal(props) {
               />
             ))}
           </Box>
-
-          <Box
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingTop: "15px",
-            }}
-          >
+  
+          <Box className="modal-footer">
             <BasicButton
-              variant={"outlined"}
+              variant={"contained"}
               onClick={onSubmit}
               name={"Submit"}
             />
@@ -108,4 +176,6 @@ export default function CreateEmployeeModal(props) {
       </Modal>
     </div>
   );
+  
+
 }

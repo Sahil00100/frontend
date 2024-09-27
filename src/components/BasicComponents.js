@@ -6,53 +6,46 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import { Checkbox, FormControlLabel } from "@mui/material";
 
-
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 export function InputBox(props) {
-
-
-
-    if (props.data_type=== "bool") {
-        return (
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={props.value}
-                onChange={(e)=>{
-                  props.onChange(e,props.id)
-                }}
-                name={props.name}
-              />
-            }
-            label={props.label}
+  if (props.data_type === "bool") {
+    return (
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={props.value}
+            onChange={(e) => {
+              props.onChange(e, props.id);
+            }}
+            name={props.name}
           />
-        );
-      }
-      else{
-
-          return (
-            <TextField
-              id="outlined-basic"
-              label={props.label}
-              variant="outlined"
-              onChange={(e)=>{
-                props.onChange(e,props.id)
-              }}
-              value={props.value}
-              name={props.name}
-              type={props.type ? props.type : "text"}
-            />
-          );  
-      }
-
+        }
+        label={props.label}
+      />
+    );
+  } else {
+    return (
+      <TextField
+        id="outlined-basic"
+        label={props.label}
+        variant="outlined"
+        onChange={(e) => {
+          props.onChange(e, props.id);
+        }}
+        value={props.value}
+        name={props.name}
+        type={props.type ? props.type : "text"}
+      />
+    );
+  }
 }
 
 export function ToggleComponent(props) {
@@ -72,11 +65,15 @@ export function ToggleComponent(props) {
 }
 
 export function TablePagination(props) {
-  let total_count = props.total_count
-  let total_pages = Math.ceil(total_count/10)
+  let total_count = props.total_count;
+  let total_pages = Math.ceil(total_count / 10);
   return (
     <Stack spacing={2}>
-      <Pagination count={total_pages} page={props.page} onChange={props.onChange} />
+      <Pagination
+        count={total_pages}
+        page={props.page}
+        onChange={props.onChange}
+      />
     </Stack>
   );
 }
@@ -84,23 +81,25 @@ export function TablePagination(props) {
 export function BasicButton(props) {
   return (
     <Button
-    // sx={{height:"50px",width:"130px"}}
-     onClick={props.onClick}
-      variant={props.variant}>
+      style={{ gap: "5px" }}
+      onClick={props.onClick}
+      variant={props.variant}
+      color={props.color}
+    >
       {props.name}
     </Button>
   );
 }
 
 export function SelectBox(props) {
-  const {value,label,handleChange,fieldList,name} = props
+  const { value, label, handleChange, fieldList, name } = props;
 
-//   const handleChange = (event) => {
-//     setAge(event.target.value);
-//   };
+  //   const handleChange = (event) => {
+  //     setAge(event.target.value);
+  //   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 235 }} >
+    <FormControl sx={{ m: 1, minWidth: 235 }}>
       <InputLabel id="demo-select-small-label">{label}</InputLabel>
       <Select
         labelId="demo-select-small-label"
@@ -110,30 +109,23 @@ export function SelectBox(props) {
         onChange={handleChange}
         name={name}
       >
-        {fieldList.map((item)=>(
-        <MenuItem value={item.value}>{item.name}</MenuItem>
+        {fieldList.map((item) => (
+          <MenuItem value={item.value}>{item.name}</MenuItem>
         ))}
-
       </Select>
     </FormControl>
   );
 }
 
-
-
-
-
 export function Snackbars(props) {
-
-  const {open,setOpen,data} = props
-
+  const { open, setOpen, data } = props;
 
   const handleClick = () => {
     setOpen(true);
   };
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -147,8 +139,7 @@ export function Snackbars(props) {
           onClose={handleClose}
           severity={data.type}
           variant="filled"
-          sx={{ width: '100%' }}
-          
+          sx={{ width: "100%" }}
         >
           {data.message}
         </Alert>

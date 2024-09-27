@@ -20,7 +20,7 @@ export default function EmployeeTable(props) {
           <TableRow>
             {/* Map through the keys and create table headers */}
             {keys.map((key) => (
-              <TableCell key={key}>{key}</TableCell>
+              <TableCell sx={{fontWeight:"bold"}} key={key}>{key}</TableCell>
             ))}
           </TableRow>
         </TableHead>

@@ -71,8 +71,6 @@ function Signup(props) {
         message:errorMessage
       })
 
-
-      // makeSnack(errorMessage,"error")
     }
     else{
       
