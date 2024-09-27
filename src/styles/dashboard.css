@@ -1,0 +1,45 @@
+.dashboard-heading{
+    text-align: center;
+}
+
+.toggle-div{
+    display: flex;
+    justify-content: center;
+}
+
+.main-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-left: 10%;
+    padding-right: 10%; */
+    padding: 10%;
+    padding-top: 0%;
+    padding-bottom: 2%;
+}
+
+.pagination-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    gap: 5;
+
+}
+
+
+
+.create-btn-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+   
+}

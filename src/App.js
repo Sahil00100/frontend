@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Nav from './components/nav';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import { Snackbars } from './components/BasicComponents';
+import { useState, useEffect } from 'react';
+import ProtectedRoute from './utils/utils';
 
 function App() {
+  const [openSnack, setOpenSnack] = useState(false);
+  const [snackData, setSnackData] = useState(null);
+  let access_token = localStorage.getItem("access_token") 
+
+  const handleCloseSnack = () => {
+    setOpenSnack(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      {openSnack ? (
+        <Snackbars open={openSnack} setOpen={handleCloseSnack} data={snackData} />
+      ) : null}
+      <Nav />
+      <Routes>
+        <Route path="/" element={
+          <ProtectedRoute>
+            <Dashboard setOpenSnack={setOpenSnack} setSnackData={setSnackData} />
+          </ProtectedRoute>
+          } />
+        <Route path="/dashboard" element={
+      <ProtectedRoute>
+      <Dashboard setOpenSnack={setOpenSnack} setSnackData={setSnackData} />
+    </ProtectedRoute>
+          } />
+        <Route path="/login" element={<Login setOpenSnack={setOpenSnack} setSnackData={setSnackData} />} />
+        <Route path="/signup" element={<Signup setOpenSnack={setOpenSnack} setSnackData={setSnackData} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
