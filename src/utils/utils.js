@@ -7,26 +7,43 @@ export const handleLogout = () =>{
 
 
 export const handleLoginError = (error, setOpenSnack, setSnackData) => {
-    console.error("Login error:", error.response?.data || error.message);
-  
-    const errors = error.response?.data;
-    let errorMessage = "An error occurred.";
-  
-    // Check if errors exist and format the message
-    if (errors) {
-      errorMessage = Object.entries(errors)
-        .map(([key, messages]) => `${key}: ${messages.join(', ')}`)
-        .join('\n'); // Join with line breaks for better readability
+  console.error("Login error:", error.response?.data || error.message);
+
+  const errors = error.response?.data;
+  let errorMessage = "An error occurred.";
+
+  // Check if errors exist and format the message
+  if (errors) {
+    // If it's a string (like the "detail" field), handle it directly
+    if (typeof errors === 'string') {
+      errorMessage = errors; // Just use the string
+    } else if (Array.isArray(errors)) {
+      // If the errors are in array format
+      errorMessage = errors.join(', ');
     } else {
-      errorMessage = error.message; // Fallback to a generic error message
+      // Handle the case where errors are an object
+      errorMessage = Object.entries(errors)
+        .map(([key, messages]) => {
+          // Ensure messages is an array before joining
+          if (Array.isArray(messages)) {
+            return `${key}: ${messages.join(', ')}`;
+          } else {
+            return `${key}: ${messages}`; // Just use the value if it's not an array
+          }
+        })
+        .join('\n'); // Join with line breaks for better readability
     }
-  
-    setOpenSnack(true);
-    setSnackData({
-      type: "error",
-      message: errorMessage,
-    });
-  };
+  } else {
+    errorMessage = error.message; // Fallback to a generic error message
+  }
+
+  setOpenSnack(true);
+  setSnackData({
+    type: "error",
+    message: errorMessage,
+  });
+};
+
 
 
 

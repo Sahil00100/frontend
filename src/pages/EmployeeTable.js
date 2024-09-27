@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-export default function CustomerTable(props) {
+export default function EmployeeTable(props) {
   const { EmployeeList } = props;
 
   // Ensure EmployeeList is not empty before mapping keys

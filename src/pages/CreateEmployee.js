@@ -19,7 +19,7 @@ const style = {
   p: 4,
 };
 
-export default function CreateCustomerModal(props) {
+export default function CreateEmployeeModal(props) {
   const { open, setOpen, state, onChange, fieldList, onSubmit,onChangeCustomField } = props;
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

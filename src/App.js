@@ -21,7 +21,7 @@ function App() {
       {openSnack ? (
         <Snackbars open={openSnack} setOpen={handleCloseSnack} data={snackData} />
       ) : null}
-      <Nav />
+      <Nav setOpenSnack={setOpenSnack} setSnackData={setSnackData} />
       <Routes>
         <Route path="/" element={
           <ProtectedRoute>

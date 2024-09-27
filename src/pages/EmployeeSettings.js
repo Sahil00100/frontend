@@ -19,7 +19,7 @@ const style = {
   p: 4,
 };
 
-export default function CustomerSettingsModal(props) {
+export default function EmployeeSettingsModal(props) {
   const {
     open,
     setOpen,

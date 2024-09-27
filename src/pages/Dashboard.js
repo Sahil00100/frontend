@@ -10,19 +10,19 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import LineChartComponent from "../components/chart";
-import CustomerTable from "./CustomerTable";
-import CreateCustomerModal from "./CreateCustomer";
-import CustomerSettingsModal from "./CustomerSettings";
+import EmployeeTable from "./EmployeeTable";
+import CreateEmployeeModal from "./CreateEmployee";
+import EmployeeSettingsModal from "./EmployeeSettings";
 import axios from "axios";
 import api from "../utils/api";
 import { handleLoginError } from "../utils/utils";
 
 const ToggleList = [
   { name: "Chart", value: "chart" },
-  { name: "Employee", value: "customer" },
+  { name: "Employee", value: "Employee" },
 ];
 
-const CustomerFieldList = [
+const EmployeeFieldList = [
   { name: "Char", value: "char" },
   // { name: "Text", value: "text" },
   { name: "Int", value: "int" },
@@ -122,7 +122,7 @@ function Dashboard(props) {
   };
 
 
-  const createCustomer = async() =>{
+  const createEmployee = async() =>{
     let payload = {
       name:state.name,
       phone_number:state.phone_number,
@@ -232,7 +232,7 @@ function Dashboard(props) {
         />
       </div>
 
-      {alignment === "customer" ? (
+      {alignment === "Employee" ? (
         <div className="search-div">
           <InputBox
             label="Search here ..."
@@ -257,26 +257,26 @@ function Dashboard(props) {
       ) : null}
 
       <div className="main-div">
-        {alignment === "customer" ? <CustomerTable EmployeeList={state.EmployeeList} /> : <LineChartComponent />}
+        {alignment === "Employee" ? <EmployeeTable EmployeeList={state.EmployeeList} /> : <LineChartComponent />}
       </div>
       <div className="pagination-div">
-        {alignment === "customer" ? <TablePagination total_count={total_count} page={page} onChange={handleChangePage} /> : null}
+        {alignment === "Employee" ? <TablePagination total_count={total_count} page={page} onChange={handleChangePage} /> : null}
       </div>
 
       {/* MODAL */}
-      <CreateCustomerModal
+      <CreateEmployeeModal
         open={is_create_new}
         setOpen={set_create_new}
         fieldList={fieldList}
         state={state}
         onChange={onChange}
-        onSubmit={createCustomer}
+        onSubmit={createEmployee}
         onChangeCustomField={onChangeCustomField}
       />
-      <CustomerSettingsModal
+      <EmployeeSettingsModal
         open={is_settings}
         setOpen={set_settings}
-        fieldList={CustomerFieldList}
+        fieldList={EmployeeFieldList}
         state={state}
         onChange={onChange}
         onSubmit={createCustomField}
